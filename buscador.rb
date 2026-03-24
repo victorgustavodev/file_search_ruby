@@ -18,9 +18,6 @@ def limpar_ambiente
   FileUtils.rm_rf("sistema_arquivos")
 end
 
-# =========================================================
-# 2. A PARTE RELEVANTE: O Algoritmo Recursivo
-# =========================================================
 def buscar_arquivo(diretorio_atual, nome_do_arquivo)
   # Lê o conteúdo do diretório atual, ignorando as referências '.' e '..'
   itens = Dir.entries(diretorio_atual).reject { |item| item == '.' || item == '..' }
@@ -29,8 +26,7 @@ def buscar_arquivo(diretorio_atual, nome_do_arquivo)
     caminho_completo = File.join(diretorio_atual, item)
 
     if File.directory?(caminho_completo)
-      # PASSO RECURSIVO: Se o item for uma pasta, a função chama a si mesma
-      # para investigar o que tem dentro dessa nova pasta.
+      # Recursão
       resultado = buscar_arquivo(caminho_completo, nome_do_arquivo)
       
       return resultado if resultado 
